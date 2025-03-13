@@ -36,7 +36,50 @@ Une application web permettant de gérer une bibliothèque, avec des fonctionnal
 
 ## Configuration et installation
 
-1. Clonez ce dépôt
-```bash
-git clone https://github.com/VOTRE-NOM-UTILISATEUR/library-management.git
+### Clonez ce dépôt
+
+bashCopygit clone https://github.com/VOTRE-NOM-UTILISATEUR/library-management.git
 cd library-management
+
+### Installez les dépendances
+npm install
+
+### Créez un fichier .env à la racine du projet avec le contenu suivant
+
+PORT=3000
+MONGODB_URI=votre_uri_mongodb
+
+### Démarrez l'application
+
+npm run dev
+
+### Accédez à l'application dans votre navigateur à l'adresse http://localhost:3000
+
+## Structure du projet
+Copybibliotheque/
+  ├── models/           # Modèles de données Mongoose
+  ├── public/           # Fichiers statiques (CSS, JS, images)
+  │   └── css/
+  ├── routes/           # Définition des routes Express
+  ├── views/            # Templates EJS
+  │   ├── partials/     # Éléments réutilisables (header, footer)
+  │   └── books/        # Templates pour les opérations sur les livres
+  ├── .env              # Variables d'environnement (non inclus dans le dépôt)
+  ├── .gitignore        # Fichiers à ignorer par Git
+  ├── app.js            # Point d'entrée de l'application
+  └── package.json      # Dépendances et scripts
+
+## Validation des données
+
+Les champs obligatoires sont vérifiés côté serveur
+Des messages d'erreur sont affichés en cas d'erreur de validation
+
+## Organisation du code
+Le projet suit une structure modulaire avec séparation claire des responsabilités :
+
+Routes : gestion des requêtes HTTP
+Modèles : définition du schéma des données
+Vues : présentation des données à l'utilisateur
+
+## Licence
+Ce projet a été créé dans le cadre d'un exercice académique.
