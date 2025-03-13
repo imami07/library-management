@@ -1,0 +1,29 @@
+<%- include('./partials/header') %>
+
+<section class="book-details">
+  <h2><%= book.title %></h2>
+  
+  <div class="book-info">
+    <p><strong>Auteur:</strong> <%= book.author %></p>
+    <p><strong>Année de publication:</strong> <%= book.year %></p>
+    
+    <% if (book.summary) { %>
+      <div class="summary">
+        <h3>Résumé</h3>
+        <p><%= book.summary %></p>
+      </div>
+    <% } %>
+    
+    <p><strong>Ajouté le:</strong> <%= book.createdAt.toLocaleDateString() %></p>
+  </div>
+  
+  <div class="action-buttons">
+    <a href="/<%= book._id %>/edit" class="btn btn-edit">Modifier</a>
+    <form action="/<%= book._id %>/delete" method="POST" class="delete-form">
+      <button type="submit" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre?')">Supprimer</button>
+    </form>
+    <a href="/" class="btn btn-back">Retour à la liste</a>
+  </div>
+</section>
+
+<%- include('./partials/footer') %>

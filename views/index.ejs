@@ -1,0 +1,52 @@
+<%- include('./partials/header') %>
+
+<section class="book-list">
+  <h2>Liste des Livres</h2>
+  
+  <div class="search-container">
+    <form action="/" method="GET">
+      <input type="text" name="search" placeholder="Rechercher par titre ou auteur" value="<%= search %>">
+      <button type="submit" class="btn btn-search">Rechercher</button>
+      <% if (search) { %>
+        <a href="/" class="btn btn-clear">Effacer</a>
+      <% } %>
+    </form>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="error-message"><%= error %></div>
+  <% } %>
+
+  <% if (books.length === 0) { %>
+    <p class="no-books">Aucun livre trouvé.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Auteur</th>
+          <th>Année</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% books.forEach(book => { %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.year %></td>
+            <td class="actions">
+              <a href="/<%= book._id %>" class="btn btn-view">Détails</a>
+              <a href="/<%= book._id %>/edit" class="btn btn-edit">Modifier</a>
+              <form action="/<%= book._id %>/delete" method="POST" class="delete-form">
+                <button type="submit" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre?')">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include('./partials/footer') %>
